@@ -29,7 +29,6 @@ const App = () => {
                 path='/album-detail'
                 component={AlbumDetailPage}
               />
-
               <PublicRoute
                 restricted={true}
                 path='/about'
