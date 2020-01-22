@@ -1,0 +1,18 @@
+.base {
+  .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 16px;
+  }
+}
+
+.public {
+  min-height: 100vh;
+  .logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0);
+    margin: 10px 24px 16px -20px;
+    float: left;
+  }
+}
