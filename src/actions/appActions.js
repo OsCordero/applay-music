@@ -3,7 +3,7 @@ import spotify from 'api/spotify';
 
 import { history } from 'helpers/history';
 
-export const login = hash => async dispatch => {
+export const getUserProfile = hash => async dispatch => {
   dispatch({ type: authConstants.LOGIN_REQUEST });
   try {
     const token = hash

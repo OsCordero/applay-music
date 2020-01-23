@@ -1,0 +1,9 @@
+const authConstants = {
+  LOGIN_REQUEST: 'USERS_LOGIN_REQUEST',
+  LOGIN_SUCCEEDED: 'USERS_LOGIN_SUCCEEDED',
+  LOGIN_FAILED: 'USERS_LOGIN_FAILED',
+
+  LOGOUT: 'USERS_LOGOUT',
+};
+
+export default authConstants;

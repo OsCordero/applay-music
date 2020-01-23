@@ -23,6 +23,7 @@ const App = () => {
                 exact
                 component={WelcomePage}
               />
+              <PublicRoute path='/callback' component={WelcomePage} />
               <PrivateRoute exact path='/main' component={MainPage} />
               <PrivateRoute
                 exact

@@ -5,11 +5,15 @@ const PublicRoute = ({ component: Component, restricted, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => (
-        <PublicLayout>
-          <Component {...props} />
-        </PublicLayout>
-      )}
+      render={props =>
+        localStorage.getItem('authToken') && restricted ? (
+          <Redirect to='/main' />
+        ) : (
+          <PublicLayout>
+            <Component {...props} />
+          </PublicLayout>
+        )
+      }
     />
   );
 };
