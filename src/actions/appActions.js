@@ -1,19 +1,20 @@
-import authConstants from 'constants/authConstants';
+import appConstants from 'constants/appConstants';
 import spotify from 'api/spotify';
-
+import store from 'helpers/store';
 import { history } from 'helpers/history';
 
-export const getUserProfile = hash => async dispatch => {
-  dispatch({ type: authConstants.LOGIN_REQUEST });
+export const fetchUserProfile = () => async dispatch => {
+  dispatch({ type: appConstants.FETCH_USER_PROFILE_REQUEST });
+
   try {
-    const token = hash
-      .substr(1)
-      .split('&')[0]
-      .split('=')[1];
-    localStorage.setItem('authToken', token);
-    history.push('/main');
-    dispatch({ type: authConstants.LOGIN_SUCCEEDED, payload: token });
+    const response = await spotify.get('/me');
+    console.log(response.data);
+
+    dispatch({
+      type: appConstants.FETCH_USER_PROFILE_SUCCEEDED,
+      payload: response.data,
+    });
   } catch (err) {
-    dispatch({ type: authConstants.LOGIN_FAILED });
+    dispatch({ type: appConstants.FETCH_USER_PROFILE_FAILED });
   }
 };

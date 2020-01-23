@@ -10,10 +10,15 @@ export const login = hash => async dispatch => {
       .substr(1)
       .split('&')[0]
       .split('=')[1];
-    localStorage.setItem('authToken', token);
     history.push('/main');
     dispatch({ type: authConstants.LOGIN_SUCCEEDED, payload: token });
   } catch (err) {
     dispatch({ type: authConstants.LOGIN_FAILED });
   }
+};
+
+export const logout = () => dispatch => {
+  dispatch({ type: authConstants.LOGOUT });
+  localStorage.removeItem('state');
+  window.location.reload();
 };

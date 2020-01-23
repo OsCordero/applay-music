@@ -1,8 +1,17 @@
 .base {
   .logo {
     height: 32px;
-    background: rgba(255, 255, 255, 0.05);
     margin: 16px;
+  }
+  .avatar:hover {
+    cursor: pointer;
+  }
+  .name-tag {
+    float: left;
+    margin-top: 5px;
+    font-size: 15px;
+    padding: 5px 8px;
+    border-radius: 15px;
   }
 }
 
@@ -11,7 +20,6 @@
   .logo {
     width: 120px;
     height: 31px;
-    background: rgba(255, 255, 255, 0);
     margin: 10px 24px 16px -20px;
     float: left;
   }

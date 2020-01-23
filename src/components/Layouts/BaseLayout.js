@@ -1,11 +1,19 @@
 import React from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Avatar, Dropdown, PageHeader, Tag } from 'antd';
+import { connect } from 'react-redux';
+
+import { fetchUserProfile } from 'actions/appActions';
+import { logout } from 'actions/authActions';
 import applaudo from 'assets/img/applaudo.svg';
+import applaudoA from 'assets/img/applaudo-A.svg';
 import './layouts.scss';
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 class BaseLayout extends React.Component {
+  componentDidMount() {
+    this.props.fetchUserProfile();
+  }
   state = {
     collapsed: false,
   };
@@ -14,6 +22,11 @@ class BaseLayout extends React.Component {
     this.setState({ collapsed });
   };
 
+  renderDropDown = () => (
+    <Menu>
+      <Menu.Item onClick={() => this.props.logout()}>Logout </Menu.Item>
+    </Menu>
+  );
   render() {
     return (
       <Layout className='base' style={{ minHeight: '100vh' }}>
@@ -23,7 +36,7 @@ class BaseLayout extends React.Component {
           onCollapse={this.onCollapse}
         >
           <div className='logo'>
-            <img src={applaudo} alt='' />
+            <img src={this.state.collapsed ? applaudoA : applaudo} alt='' />
           </div>
           <Menu theme='dark' defaultSelectedKeys={['1']} mode='inline'>
             <Menu.Item key='1'>
@@ -66,7 +79,28 @@ class BaseLayout extends React.Component {
           </Menu>
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }} />
+          <PageHeader
+            style={{ background: '#fff', padding: '10px 24px' }}
+            extra={[
+              <Tag className='name-tag' key='2'>
+                {this.props.name}
+              </Tag>,
+              <Dropdown
+                placement='bottomRight'
+                key='1'
+                overlay={this.renderDropDown}
+                trigger={['click']}
+              >
+                <Avatar
+                  icon='user'
+                  className='avatar'
+                  size='large'
+                  src={this.props.profileImg}
+                />
+              </Dropdown>,
+            ]}
+          />
+
           <Content style={{ margin: '24px 16px 0' }}>
             <div
               style={{
@@ -79,12 +113,21 @@ class BaseLayout extends React.Component {
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2018 Created by Ant UED
+            {
+              "Applaudo Studios ©2013 Created by 2019's Trainee Program React Team"
+            }
           </Footer>
         </Layout>
       </Layout>
     );
   }
 }
-
-export default BaseLayout;
+const mapStateToProps = state => {
+  return {
+    profileImg: state.app.user.images ? state.app.user.images[0].url : '',
+    name: state.app.user.display_name ? state.app.user.display_name : '',
+  };
+};
+export default connect(mapStateToProps, { fetchUserProfile, logout })(
+  BaseLayout
+);

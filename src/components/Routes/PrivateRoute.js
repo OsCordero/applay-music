@@ -1,22 +1,26 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import BaseLayout from 'components/Layouts/BaseLayout';
+import { connect } from 'react-redux';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ component: Component, accessToken, ...rest }) => {
   return (
     <Route
       {...rest}
       render={props =>
-        true ? (
+        accessToken ? (
           <BaseLayout>
             <Component {...props} />
           </BaseLayout>
         ) : (
-          <Redirect to='/login' />
+          <Redirect to='/' />
         )
       }
     />
   );
 };
 
-export default PrivateRoute;
+const mapStateToProps = state => {
+  return { accessToken: state.auth.accessToken };
+};
+export default connect(mapStateToProps)(PrivateRoute);

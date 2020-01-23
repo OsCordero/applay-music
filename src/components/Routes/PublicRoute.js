@@ -1,12 +1,19 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PublicLayout from 'components/Layouts/PublicLayout';
-const PublicRoute = ({ component: Component, restricted, ...rest }) => {
+import { connect } from 'react-redux';
+
+const PublicRoute = ({
+  component: Component,
+  restricted,
+  accessToken,
+  ...rest
+}) => {
   return (
     <Route
       {...rest}
       render={props =>
-        localStorage.getItem('authToken') && restricted ? (
+        accessToken && restricted ? (
           <Redirect to='/main' />
         ) : (
           <PublicLayout>
@@ -17,5 +24,7 @@ const PublicRoute = ({ component: Component, restricted, ...rest }) => {
     />
   );
 };
-
-export default PublicRoute;
+const mapStateToProps = state => {
+  return { accessToken: state.auth.accessToken };
+};
+export default connect(mapStateToProps)(PublicRoute);

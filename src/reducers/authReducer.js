@@ -1,6 +1,6 @@
 import authConstants from '../constants/authConstants';
 
-const initState = { isLoading: false, user: {}, userError: false };
+const initState = { isLoading: false, authError: false, accessToken: '' };
 
 export default (state = initState, action) => {
   switch (action.type) {
@@ -10,11 +10,11 @@ export default (state = initState, action) => {
       return {
         ...state,
         isLoading: false,
-        userError: false,
+        authError: false,
         accessToken: action.payload,
       };
     case authConstants.LOGIN_FAILED:
-      return { ...state, isLoading: false, userError: true };
+      return { ...state, isLoading: false, authError: true };
     case authConstants.LOGOUT:
       return { ...state, initState };
     default:
