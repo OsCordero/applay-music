@@ -1,7 +1,7 @@
-const authConstants = {
+const userConstants = {
   FETCH_USER_PROFILE_REQUEST: 'FETCH_USER_PROFILE_REQUEST',
   FETCH_USER_PROFILE_SUCCEEDED: 'FETCH_USER_PROFILE_SUCCEEDED',
   FETCH_USER_PROFILE_FAILED: 'FETCH_USER_PROFILE_FAILED',
 };
 
-export default authConstants;
+export default userConstants;

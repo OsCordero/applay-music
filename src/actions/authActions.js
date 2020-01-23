@@ -1,5 +1,4 @@
 import authConstants from 'constants/authConstants';
-import spotify from 'api/spotify';
 
 import { history } from 'helpers/history';
 
