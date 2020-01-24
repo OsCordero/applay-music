@@ -21,8 +21,6 @@ spotify.interceptors.response.use(undefined, function(err) {
   }
 
   if (err.response.status === 401) {
-    console.log('unauthorized');
-    localStorage.removeItem('state');
     store.dispatch(logout());
     return err;
   }

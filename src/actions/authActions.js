@@ -19,5 +19,5 @@ export const login = hash => async dispatch => {
 export const logout = () => dispatch => {
   dispatch({ type: authConstants.LOGOUT });
   localStorage.removeItem('state');
-  window.location.reload();
+  history.push('/');
 };

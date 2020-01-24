@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Row, Col } from 'antd';
 import { useParams } from 'react-router-dom';
 const AlbumDetailPage = props => {
   useEffect(() => {
@@ -8,6 +9,11 @@ const AlbumDetailPage = props => {
   return (
     <div>
       <h1>Album detail page</h1>
+      <Row>
+        <Col span={8}>col-8</Col>
+        <Col span={8}>col-8</Col>
+        <Col span={8}>col-8</Col>
+      </Row>
     </div>
   );
 };
