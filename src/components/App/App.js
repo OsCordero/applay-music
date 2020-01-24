@@ -31,7 +31,7 @@ const App = () => {
               <PrivateRoute exact path='/main' component={MainPage} />
               <PrivateRoute
                 exact
-                path='/album-detail'
+                path='/album-detail/:id'
                 component={AlbumDetailPage}
               />
               <PublicRoute

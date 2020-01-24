@@ -1,4 +1,7 @@
 import userConstants from 'constants/userConstants';
+import { history } from 'helpers/history';
+import store from 'helpers/store';
+
 import spotify from 'api/spotify';
 
 export const fetchUserProfile = () => async dispatch => {

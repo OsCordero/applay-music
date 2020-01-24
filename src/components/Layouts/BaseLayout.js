@@ -1,8 +1,8 @@
 import React from 'react';
 import { Layout, Menu, Icon, Avatar, Dropdown, PageHeader, Tag } from 'antd';
 import { connect } from 'react-redux';
-
-import { fetchUserProfile } from 'actions/appActions';
+import { Link } from 'react-router-dom';
+import { fetchUserProfile } from 'actions/userActions';
 import { logout } from 'actions/authActions';
 import applaudo from 'assets/img/applaudo.svg';
 import applaudoA from 'assets/img/applaudo-A.svg';
@@ -35,9 +35,11 @@ class BaseLayout extends React.Component {
           collapsed={this.state.collapsed}
           onCollapse={this.onCollapse}
         >
-          <div className='logo'>
-            <img src={this.state.collapsed ? applaudoA : applaudo} alt='' />
-          </div>
+          <Link to='/main'>
+            <div className='logo'>
+              <img src={this.state.collapsed ? applaudoA : applaudo} alt='' />
+            </div>
+          </Link>
           <Menu theme='dark' defaultSelectedKeys={['1']} mode='inline'>
             <Menu.Item key='1'>
               <Icon type='pie-chart' />
@@ -82,21 +84,21 @@ class BaseLayout extends React.Component {
           <PageHeader
             style={{ background: '#fff', padding: '10px 24px' }}
             extra={[
-              <Tag className='name-tag' key='2'>
-                {this.props.name}
-              </Tag>,
               <Dropdown
                 placement='bottomRight'
                 key='1'
                 overlay={this.renderDropDown}
                 trigger={['click']}
               >
-                <Avatar
-                  icon='user'
-                  className='avatar'
-                  size='large'
-                  src={this.props.profileImg}
-                />
+                <Tag className='name-tag' key='2'>
+                  <Avatar
+                    size='small'
+                    icon='user'
+                    className='avatar'
+                    src={this.props.profileImg}
+                  />
+                  {this.props.name}
+                </Tag>
               </Dropdown>,
             ]}
           />
@@ -124,8 +126,12 @@ class BaseLayout extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    profileImg: state.app.user.images ? state.app.user.images[0].url : '',
-    name: state.app.user.display_name ? state.app.user.display_name : '',
+    profileImg: state.user.user.images
+      ? state.user.user.images[0]
+        ? state.user.user.images[0].url
+        : ''
+      : '',
+    name: state.user.user.display_name ? state.user.user.display_name : '',
   };
 };
 export default connect(mapStateToProps, { fetchUserProfile, logout })(

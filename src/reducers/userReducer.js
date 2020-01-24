@@ -5,7 +5,7 @@ const initState = { isLoading: false, user: {}, userError: false };
 export default (state = initState, action) => {
   switch (action.type) {
     case userConstants.FETCH_USER_PROFILE_REQUEST:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, userError: false };
     case userConstants.FETCH_USER_PROFILE_SUCCEEDED:
       return {
         ...state,

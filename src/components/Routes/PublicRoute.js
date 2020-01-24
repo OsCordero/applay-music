@@ -3,17 +3,12 @@ import { Route, Redirect } from 'react-router-dom';
 import PublicLayout from 'components/Layouts/PublicLayout';
 import { connect } from 'react-redux';
 
-const PublicRoute = ({
-  component: Component,
-  restricted,
-  accessToken,
-  ...rest
-}) => {
+const PublicRoute = ({ component: Component, restricted, isLoggedIn, ...rest }) => {
   return (
     <Route
       {...rest}
       render={props =>
-        accessToken && restricted ? (
+        isLoggedIn && restricted ? (
           <Redirect to='/main' />
         ) : (
           <PublicLayout>
@@ -25,6 +20,6 @@ const PublicRoute = ({
   );
 };
 const mapStateToProps = state => {
-  return { accessToken: state.auth.accessToken };
+  return { isLoggedIn: state.auth.isLoggedIn };
 };
 export default connect(mapStateToProps)(PublicRoute);

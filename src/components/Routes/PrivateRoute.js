@@ -3,12 +3,14 @@ import { Route, Redirect } from 'react-router-dom';
 import BaseLayout from 'components/Layouts/BaseLayout';
 import { connect } from 'react-redux';
 
-const PrivateRoute = ({ component: Component, accessToken, ...rest }) => {
+const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => {
+  // eslint-disable-next-line no-debugger
+
   return (
     <Route
       {...rest}
       render={props =>
-        accessToken ? (
+        isLoggedIn ? (
           <BaseLayout>
             <Component {...props} />
           </BaseLayout>
@@ -21,6 +23,6 @@ const PrivateRoute = ({ component: Component, accessToken, ...rest }) => {
 };
 
 const mapStateToProps = state => {
-  return { accessToken: state.auth.accessToken };
+  return { isLoggedIn: state.auth.isLoggedIn };
 };
 export default connect(mapStateToProps)(PrivateRoute);
