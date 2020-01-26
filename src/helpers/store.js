@@ -9,9 +9,7 @@ const composeDev =
   process.env.NODE_ENV === 'production'
     ? applyMiddleware(thunk)
     : composeWithDevTools(applyMiddleware(thunk));
-
 const persistedState = loadState();
-
 const store = createStore(reducers, persistedState, composeDev);
 
 store.subscribe(() => {

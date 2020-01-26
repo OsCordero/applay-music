@@ -11,9 +11,12 @@ const MainPage = props => {
   const { fetchUserAlbums } = props;
 
   useEffect(() => {
-    fetchUserAlbums();
+    fetchUserAlbums(0);
   }, [fetchUserAlbums]);
 
+  const onPageChange = page => {
+    fetchUserAlbums((page - 1) * 4);
+  };
   return (
     <div>
       <Title>Your saved Albums:</Title>
@@ -31,7 +34,7 @@ const MainPage = props => {
             {props.albums.map(albumsItem => {
               const { album } = albumsItem;
               return (
-                <Col span={8} key={album.id}>
+                <Col span={6} key={album.id}>
                   <Card
                     hoverable={true}
                     cover={<img alt='album-cover' src={album.images[1].url} />}
@@ -61,7 +64,12 @@ const MainPage = props => {
           </Row>
 
           <div className='pagination-container'>
-            <Pagination style={{ margin: '0 auto' }} total={50} />
+            <Pagination
+              pageSize={4}
+              style={{ margin: '0 auto' }}
+              total={props.total}
+              onChange={onPageChange}
+            />
           </div>
         </>
       )}
@@ -72,6 +80,7 @@ const MainPage = props => {
 const mapStateToProps = state => {
   return {
     albums: state.album.albumList,
+    total: state.album.totalAlbums,
     error: state.album.albumError,
   };
 };
