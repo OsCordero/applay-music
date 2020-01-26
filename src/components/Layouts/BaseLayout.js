@@ -30,11 +30,7 @@ class BaseLayout extends React.Component {
   render() {
     return (
       <Layout className='base' style={{ minHeight: '100vh' }}>
-        <Sider
-          collapsible
-          collapsed={this.state.collapsed}
-          onCollapse={this.onCollapse}
-        >
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
           <Link to='/main'>
             <div className='logo'>
               <img src={this.state.collapsed ? applaudoA : applaudo} alt='' />
@@ -82,7 +78,7 @@ class BaseLayout extends React.Component {
         </Sider>
         <Layout>
           <PageHeader
-            style={{ background: '#fff', padding: '10px 24px' }}
+            style={{ background: '#fff', padding: '5px 24px' }}
             extra={[
               <Dropdown
                 placement='bottomRight'
@@ -115,9 +111,7 @@ class BaseLayout extends React.Component {
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
-            {
-              "Applaudo Studios ©2013 Created by 2019's Trainee Program React Team"
-            }
+            {"Applaudo Studios ©2013 Created by 2019's Trainee Program React Team"}
           </Footer>
         </Layout>
       </Layout>
@@ -134,6 +128,4 @@ const mapStateToProps = state => {
     name: state.user.user.display_name ? state.user.user.display_name : '',
   };
 };
-export default connect(mapStateToProps, { fetchUserProfile, logout })(
-  BaseLayout
-);
+export default connect(mapStateToProps, { fetchUserProfile, logout })(BaseLayout);

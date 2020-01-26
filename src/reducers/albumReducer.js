@@ -1,6 +1,6 @@
 import albumConstants from '../constants/albumConstants';
 
-const initState = { isLoading: false, albumList: [], albumError: false };
+const initState = { isLoading: false, albumList: [], albumError: false, totalAlbums: 0 };
 
 export default (state = initState, action) => {
   switch (action.type) {
@@ -11,7 +11,8 @@ export default (state = initState, action) => {
         ...state,
         isLoading: false,
         albumError: false,
-        albumList: action.payload,
+        albumList: action.payload.albumList,
+        totalAlbums: action.payload.totalAlbums,
       };
     case albumConstants.FETCH_ALBUMS_FAILED:
       return { ...state, isLoading: false, albumError: true };
