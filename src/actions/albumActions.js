@@ -1,7 +1,5 @@
 import albumConstants from 'constants/albumConstants';
 import spotify from 'api/spotify';
-import store from 'helpers/store';
-import { history } from 'helpers/history';
 
 export const fetchUserAlbums = offset => async dispatch => {
   dispatch({ type: albumConstants.FETCH_ALBUMS_REQUEST });

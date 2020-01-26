@@ -78,7 +78,7 @@ class BaseLayout extends React.Component {
         </Sider>
         <Layout>
           <PageHeader
-            style={{ background: '#fff', padding: '5px 24px' }}
+            style={{ background: '#fff', padding: '12px 24px' }}
             extra={[
               <Dropdown
                 placement='bottomRight'

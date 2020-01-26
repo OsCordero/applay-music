@@ -21,10 +21,7 @@ spotify.interceptors.response.use(undefined, function(err) {
   }
 
   if (err.response.status === 401) {
-<<<<<<< HEAD
-=======
     localStorage.removeItem('state');
->>>>>>> feature/mainPage
     store.dispatch(logout());
     return err;
   }
