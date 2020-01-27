@@ -15,6 +15,7 @@ const ProfilePage = props => {
             src={images ? images[0].url : ''}
             icon='user'
           />
+          <Title>{display_name}</Title>
         </Col>
       </Row>
     </div>

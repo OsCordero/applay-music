@@ -7,7 +7,7 @@ import './welcome.scss';
 import icon from './spotify.png';
 const { Title } = Typography;
 
-const WelcomePage = props => {
+export const WelcomePage = props => {
   const scopes = ['user-library-read'];
   useEffect(() => {
     if (props.match.path.includes('callback')) {

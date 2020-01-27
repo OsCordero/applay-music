@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert, Spin } from 'antd';
 
 import './render-ctrl.scss';
-const RenderCtrl = props => {
+export const RenderCtrl = props => {
   return props.error ? (
     <Alert
       message='Something went wrong'

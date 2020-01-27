@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render main Page with albums list 1`] = `
+<div>
+  <Title>
+    Your saved Albums:
+  </Title>
+  <RenderCtrl>
+    <Row
+      gutter={
+        Array [
+          30,
+          16,
+        ]
+      }
+      type="flex"
+    >
+      <Col
+        key="3rxF05Aux0QTrN533Kjc91"
+        lg={8}
+        md={12}
+        xl={6}
+        xs={24}
+      >
+        <Card
+          actions={
+            Array [
+              <ForwardRef
+                to="/album-detail/3rxF05Aux0QTrN533Kjc91"
+              >
+                <div>
+                  <Icon
+                    type="file-search"
+                  />
+                  See Details
+                </div>
+              </ForwardRef>,
+              <a
+                href="https://open.spotify.com/album/3rxF05Aux0QTrN533Kjc91"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <Icon
+                  type="ellipsis"
+                />
+                Go to spotify
+              </a>,
+            ]
+          }
+          cover={
+            <img
+              alt="album-cover"
+              src="https://i.scdn.co/image/ab67616d00001e022905ed19f009bd5661019c5e"
+            />
+          }
+          hoverable={true}
+        >
+          <Link
+            key="edit"
+            to="/album-detail/3rxF05Aux0QTrN533Kjc91"
+          >
+            <Meta
+              description="Motörhead"
+              title="Ace of Spades (Expanded Edition)"
+            />
+          </Link>
+        </Card>
+      </Col>
+      <Col
+        key="4otkd9As6YaxxEkIjXPiZ6"
+        lg={8}
+        md={12}
+        xl={6}
+        xs={24}
+      >
+        <Card
+          actions={
+            Array [
+              <ForwardRef
+                to="/album-detail/4otkd9As6YaxxEkIjXPiZ6"
+              >
+                <div>
+                  <Icon
+                    type="file-search"
+                  />
+                  See Details
+                </div>
+              </ForwardRef>,
+              <a
+                href="https://open.spotify.com/album/4otkd9As6YaxxEkIjXPiZ6"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <Icon
+                  type="ellipsis"
+                />
+                Go to spotify
+              </a>,
+            ]
+          }
+          cover={
+            <img
+              alt="album-cover"
+              src="https://i.scdn.co/image/3f505feb301e37af5d6e23bc6782bbf6cb575183"
+            />
+          }
+          hoverable={true}
+        >
+          <Link
+            key="edit"
+            to="/album-detail/4otkd9As6YaxxEkIjXPiZ6"
+          >
+            <Meta
+              description="Eminem"
+              title="Music To Be Murdered By"
+            />
+          </Link>
+        </Card>
+      </Col>
+    </Row>
+    <div
+      className="pagination-container"
+    >
+      <Pagination
+        current={1}
+        onChange={[Function]}
+        pageSize={4}
+        style={
+          Object {
+            "margin": "0 auto",
+          }
+        }
+        total={7}
+      />
+    </div>
+  </RenderCtrl>
+</div>
+`;
+
+exports[`should render main Page with error alert on error 1`] = `
+<Alert
+  closable={true}
+  description="We're sorry, please try refresh the page"
+  message="Something went wrong"
+  showIcon={true}
+  type="error"
+/>
+`;
+
+exports[`should render main Page with spinner on loading 1`] = `
+<div
+  className="spinner-container"
+>
+  <Spin
+    className="spinner"
+    size="large"
+    spinning={true}
+    wrapperClassName=""
+  />
+</div>
+`;

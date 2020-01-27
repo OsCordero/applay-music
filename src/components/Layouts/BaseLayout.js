@@ -24,7 +24,12 @@ class BaseLayout extends React.Component {
 
   renderDropDown = () => (
     <Menu>
-      <Menu.Item onClick={() => this.props.logout()}>Profile </Menu.Item>
+      <Menu.Item>
+        <Link to='/profile'>
+          <Icon type='smile' />
+          <span> My Profile </span>
+        </Link>
+      </Menu.Item>
       <Divider style={{ margin: '0' }} />
       <Menu.Item onClick={() => this.props.logout()}>Logout </Menu.Item>
     </Menu>

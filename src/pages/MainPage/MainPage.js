@@ -10,7 +10,7 @@ import './main.scss';
 const { Meta } = Card;
 const { Title } = Typography;
 
-const MainPage = props => {
+export const MainPage = props => {
   const { fetchUserAlbums } = props;
 
   useEffect(() => {
