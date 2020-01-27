@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchUserProfile } from 'actions/userActions';
 import { logout } from 'actions/authActions';
+import { history } from 'helpers/history';
 import applaudo from 'assets/img/applaudo.svg';
 import applaudoA from 'assets/img/applaudo-A.svg';
 import './layouts.scss';
 const { Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
 
 class BaseLayout extends React.Component {
   componentDidMount() {
@@ -52,6 +52,7 @@ class BaseLayout extends React.Component {
         </Sider>
         <Layout>
           <PageHeader
+            onBack={() => history.goBack()}
             style={{ background: '#fff', padding: '12px 24px' }}
             extra={[
               <Dropdown

@@ -1,47 +1,35 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Router, Switch } from 'react-router-dom';
 
 import { history } from 'helpers/history';
 import PrivateRoute from 'components/Routes/PrivateRoute';
 import PublicRoute from 'components/Routes/PublicRoute';
 import WelcomePage from 'pages/WelcomePage/WelcomePage';
-import MainPage from 'pages/MainPage/MainPage';
-import AlbumDetailPage from 'pages/AlbumDetailPage/AlbumDetailPage';
-import About from 'pages/About/About';
 
 import './app.scss';
+
+const MainPage = lazy(() => import('pages/MainPage/MainPage'));
+const AlbumDetailPage = lazy(() => import('pages/AlbumDetailPage/AlbumDetailPage'));
+const ArtistDetailPage = lazy(() => import('pages/ArtistDetailPage/ArtistDetailPage'));
+const About = lazy(() => import('pages/About/About'));
+
 const App = () => {
   return (
     <div className='app'>
       <Router history={history}>
         <div>
           <div className='container'>
-            <Switch>
-              <PublicRoute
-                restricted={true}
-                path='/'
-                exact
-                component={WelcomePage}
-              />
-              <PublicRoute
-                restricted={true}
-                path='/callback'
-                component={WelcomePage}
-              />
-              <PrivateRoute exact path='/main' component={MainPage} />
-              <PrivateRoute
-                exact
-                path='/album-detail/:id'
-                component={AlbumDetailPage}
-              />
-              <PublicRoute
-                restricted={true}
-                path='/about'
-                exact
-                component={About}
-              />
-              {/* <Route component={NotFound} /> */}
-            </Switch>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Switch>
+                <PublicRoute restricted={true} path='/' exact component={WelcomePage} />
+                <PublicRoute restricted={true} path='/callback' component={WelcomePage} />
+                <PrivateRoute exact path='/main' component={MainPage} />
+                <PrivateRoute exact path='/album-detail/:id' component={AlbumDetailPage} />
+                <PrivateRoute exact path='/artist-detail/:id' component={ArtistDetailPage} />
+                <PublicRoute restricted={true} path='/about' exact component={About} />
+                {/* <Route component={NotFound} /> */}
+              </Switch>
+            </Suspense>
           </div>
         </div>
       </Router>

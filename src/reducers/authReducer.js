@@ -17,7 +17,7 @@ export default (state = initState, action) => {
     case authConstants.LOGIN_FAILED:
       return { ...state, isLoading: false, authError: true };
     case authConstants.LOGOUT:
-      return { initState };
+      return initState;
     default:
       return state;
   }
