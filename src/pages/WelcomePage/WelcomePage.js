@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Typography, Button } from 'antd';
 import { connect } from 'react-redux';
-import { login } from 'actions/authActions';
+import { login, logout } from 'actions/authActions';
 
 import './welcome.scss';
 import icon from './spotify.png';
@@ -12,8 +12,10 @@ const WelcomePage = props => {
   useEffect(() => {
     if (props.match.path.includes('callback')) {
       props.login(window.location.hash);
+    } else {
+      props.logout();
     }
-  });
+  }, []);
 
   return (
     <div className='welcome'>
@@ -32,4 +34,4 @@ const WelcomePage = props => {
   );
 };
 
-export default connect(null, { login })(WelcomePage);
+export default connect(null, { login, logout })(WelcomePage);

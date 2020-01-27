@@ -1,6 +1,5 @@
 import axios from 'axios';
 import store from 'helpers/store';
-import { history } from 'helpers/history';
 import { logout } from 'actions/authActions';
 const spotify = axios.create({
   baseURL: process.env.REACT_APP_SPOTIFY_BASE_URL,

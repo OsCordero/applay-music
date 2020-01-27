@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Typography, Card, Icon, Pagination, Row, Col, Alert } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Typography, Card, Icon, Pagination, Row, Col, Alert, Spin } from 'antd';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchUserAlbums } from 'actions/albumActions';
@@ -14,7 +14,9 @@ const MainPage = props => {
     fetchUserAlbums(0);
   }, [fetchUserAlbums]);
 
+  const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = page => {
+    setCurrentPage(page);
     fetchUserAlbums((page - 1) * 4);
   };
   return (
@@ -28,13 +30,17 @@ const MainPage = props => {
           type='error'
           showIcon
         />
+      ) : props.loading ? (
+        <div className='spinner'>
+          <Spin className='spinner' size='large' style={{}} />
+        </div>
       ) : (
         <>
-          <Row type='flex' gutter={[70, 16]}>
+          <Row type='flex' gutter={[30, 16]}>
             {props.albums.map(albumsItem => {
               const { album } = albumsItem;
               return (
-                <Col span={6} key={album.id}>
+                <Col xs={24} md={12} lg={8} xl={6} key={album.id}>
                   <Card
                     hoverable={true}
                     cover={<img alt='album-cover' src={album.images[1].url} />}
@@ -56,7 +62,9 @@ const MainPage = props => {
                       </a>,
                     ]}
                   >
-                    <Meta title={album.name} description={album.artists[0].name} />
+                    <Link to={`/album-detail/${album.id}`} key='edit'>
+                      <Meta title={album.name} description={album.artists[0].name} />
+                    </Link>
                   </Card>
                 </Col>
               );
@@ -69,6 +77,7 @@ const MainPage = props => {
               style={{ margin: '0 auto' }}
               total={props.total}
               onChange={onPageChange}
+              current={currentPage}
             />
           </div>
         </>
@@ -82,6 +91,7 @@ const mapStateToProps = state => {
     albums: state.album.albumList,
     total: state.album.totalAlbums,
     error: state.album.albumError,
+    loading: state.album.isLoading,
   };
 };
 export default connect(mapStateToProps, { fetchUserAlbums })(MainPage);

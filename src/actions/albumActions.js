@@ -15,13 +15,16 @@ export const fetchUserAlbums = offset => async dispatch => {
   }
 };
 
-export const fetchAlbumDetail = () => async dispatch => {
-  dispatch({ type: albumConstants.FETCH_ALBUMS_REQUEST });
+export const fetchAlbumDetail = id => async dispatch => {
+  dispatch({ type: albumConstants.FETCH_ALBUM_DETAIL_REQUEST });
 
   try {
-    const response = await spotify.get(`/me/albums`);
-    dispatch({ type: albumConstants.FETCH_ALBUMS_SUCCEEDED, payload: response.data.items });
+    const response = await spotify.get(`/albums/${id}`);
+    dispatch({
+      type: albumConstants.FETCH_ALBUM_DETAIL_SUCCEEDED,
+      payload: response.data,
+    });
   } catch (err) {
-    dispatch({ type: albumConstants.FETCH_ALBUMS_FAILED });
+    dispatch({ type: albumConstants.FETCH_ALBUM_DETAIL_FAILED });
   }
 };
