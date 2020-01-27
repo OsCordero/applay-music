@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Row, Col, Typography, Icon, Alert, Spin, Tooltip } from 'antd';
+import { Row, Col, Typography, Icon, Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { fetchAlbumDetail } from 'actions/albumActions';
 import SongList from 'components/SongList/SongList';
 
+import RenderCtrl from 'components/RenderCtrl/RenderCtrl';
 const { Title, Text } = Typography;
 const AlbumDetailPage = props => {
   const { images, tracks } = props.album;
@@ -18,66 +19,52 @@ const AlbumDetailPage = props => {
   return (
     <div>
       <Title level={2}>Album detail page</Title>
-      {props.error ? (
-        <Alert
-          message='Something went wrong'
-          closable
-          description={"We're sorry, please try refresh the page"}
-          type='error'
-          showIcon
-        />
-      ) : props.loading ? (
-        <div className='spinner'>
-          <Spin className='spinner' size='large' style={{}} />
-        </div>
-      ) : (
-        <>
-          <Row>
-            <Col md={{ span: 8, offset: 7 }} lg={{ span: 8, offset: 0 }} xl={8}>
-              <img src={images ? images[1].url : ''} alt='albun-image' />
-              <div style={{ minWidth: '300px' }}>
-                <a href={album.external_urls ? album.external_urls.spotify : ''}>
-                  <Title level={2} style={{ marginBottom: 0 }}>
-                    {album.name}
-                  </Title>
-                </a>
+      <RenderCtrl error={props.error} loading={props.loading}>
+        <Row>
+          <Col md={{ span: 8, offset: 7 }} lg={{ span: 8, offset: 0 }} xl={8}>
+            <img src={images ? images[1].url : ''} alt='albun-image' />
+            <div style={{ minWidth: '300px' }}>
+              <a href={album.external_urls ? album.external_urls.spotify : ''}>
+                <Title level={2} style={{ marginBottom: 0 }}>
+                  {album.name}
+                </Title>
+              </a>
 
-                <Title level={3} style={{ margin: 0 }}>
-                  {album.artists
-                    ? album.artists.map(artist => (
-                        <div key={artist.id}>
-                          {artist.name}
-                          <Link to={`/artist-detail/${artist.id}`}>
-                            <Tooltip title="See this artist's details">
-                              <Icon type='info-circle' style={{ marginLeft: '10px' }} />
-                            </Tooltip>
-                          </Link>
-                        </div>
-                      ))
-                    : ''}
-                </Title>
-                <Title level={4} style={{ margin: 0 }}>
-                  {album.genres
-                    ? album.genres.lenght > 0
-                      ? `Genres ${album.genres.map(genre => genre.name).join(', ')}`
-                      : ''
-                    : ''}
-                </Title>
-                <Text code>Release date: {album.release_date}</Text>
-                <div style={{ marginTop: '10px' }}>
-                  <a href={album.external_urls ? album.external_urls.spotify : ''}>
-                    <Icon type='arrow-up' rotate={45} />
-                    See album on spotify
-                  </a>
-                </div>
+              <Title level={3} style={{ margin: 0 }}>
+                {album.artists
+                  ? album.artists.map(artist => (
+                      <div key={artist.id}>
+                        {artist.name}
+                        <Link to={`/artist-detail/${artist.id}`}>
+                          <Tooltip title="See this artist's details">
+                            <Icon type='info-circle' style={{ marginLeft: '10px' }} />
+                          </Tooltip>
+                        </Link>
+                      </div>
+                    ))
+                  : ''}
+              </Title>
+              <Title level={4} style={{ margin: 0 }}>
+                {album.genres
+                  ? album.genres.lenght > 0
+                    ? `Genres ${album.genres.map(genre => genre.name).join(', ')}`
+                    : ''
+                  : ''}
+              </Title>
+              <Text code>Release date: {album.release_date}</Text>
+              <div style={{ marginTop: '10px' }}>
+                <a href={album.external_urls ? album.external_urls.spotify : ''}>
+                  <Icon type='arrow-up' rotate={45} />
+                  See album on spotify
+                </a>
               </div>
-            </Col>
-            <Col xs={24} lg={{ span: 14, offset: 2 }} xl={{ span: 16, offset: 0 }}>
-              <SongList tracks={tracks ? tracks.items : []} />
-            </Col>
-          </Row>
-        </>
-      )}
+            </div>
+          </Col>
+          <Col xs={24} lg={{ span: 14, offset: 2 }} xl={{ span: 16, offset: 0 }}>
+            <SongList tracks={tracks ? tracks.items : []} />
+          </Col>
+        </Row>
+      </RenderCtrl>
     </div>
   );
 };
