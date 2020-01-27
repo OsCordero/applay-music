@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Card, Icon, Pagination, Row, Col, Alert, Spin } from 'antd';
+import { Typography, Card, Icon, Pagination, Row, Col } from 'antd';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ export const MainPage = props => {
   };
   return (
     <div>
-      <Title>Your saved Albums:</Title>
+      <Title level={2}>Your saved Albums:</Title>
       <RenderCtrl error={props.error} loading={props.loading}>
         <Row type='flex' gutter={[30, 16]}>
           {props.albums.map(albumsItem => {

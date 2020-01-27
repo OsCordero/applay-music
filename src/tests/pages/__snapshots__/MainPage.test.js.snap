@@ -2,7 +2,9 @@
 
 exports[`should render main Page with albums list 1`] = `
 <div>
-  <Title>
+  <Title
+    level={2}
+  >
     Your saved Albums:
   </Title>
   <RenderCtrl>
