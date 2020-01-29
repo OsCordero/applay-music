@@ -9,9 +9,10 @@ const { TabPane } = Tabs;
 const { Title, Text } = Typography;
 const ArtistDetailPage = props => {
   const { images, genres, name, followers, external_urls } = props.artist;
+  const { match, fetchArtistData } = props;
   useEffect(() => {
-    props.fetchArtistData(props.match.params.id);
-  }, []);
+    fetchArtistData(match.params.id);
+  }, [match, fetchArtistData]);
 
   const renderTab = (type, title) => (
     <span>
@@ -19,7 +20,6 @@ const ArtistDetailPage = props => {
       {title}
     </span>
   );
-  console.log(props.relatedArtists);
 
   return (
     <div>

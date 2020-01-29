@@ -8,14 +8,15 @@ import icon from './spotify.png';
 const { Title } = Typography;
 
 export const WelcomePage = props => {
-  const scopes = ['user-library-read'];
+  const scopes = 'user-library-read,streaming,app-remote-control,user-modify-playback-state';
+  const { match, login, logout } = props;
   useEffect(() => {
-    if (props.match.path.includes('callback')) {
-      props.login(window.location.hash);
+    if (match.path.includes('callback')) {
+      login(window.location.hash);
     } else {
-      props.logout();
+      logout();
     }
-  }, []);
+  }, [match.path, login, logout]);
 
   return (
     <div className='welcome'>

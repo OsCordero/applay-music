@@ -1,14 +1,16 @@
 import React from 'react';
-import { Layout, Menu, Icon, Avatar, Dropdown, PageHeader, Tag, Divider } from 'antd';
+import { Layout, Menu, Icon, Avatar, Dropdown, PageHeader, Tag } from 'antd';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchUserProfile } from 'actions/userActions';
 import { logout } from 'actions/authActions';
 import { history } from 'helpers/history';
+import Player from 'components/Player/Player';
 import applaudo from 'assets/img/applaudo.svg';
 import applaudoA from 'assets/img/applaudo-A.svg';
 import './layouts.scss';
-const { Content, Footer, Sider } = Layout;
+
+const { Content, Footer, Sider, Header } = Layout;
 
 class BaseLayout extends React.Component {
   componentDidMount() {
@@ -30,7 +32,6 @@ class BaseLayout extends React.Component {
           <span> My Profile </span>
         </Link>
       </Menu.Item>
-      <Divider style={{ margin: '0' }} />
       <Menu.Item onClick={() => this.props.logout()}>Logout </Menu.Item>
     </Menu>
   );
@@ -53,8 +54,10 @@ class BaseLayout extends React.Component {
             </Menu.Item>
 
             <Menu.Item key='2'>
-              <Icon type='search' />
-              <span>Search</span>
+              <Link to='/search'>
+                <Icon type='search' />
+                <span>Search</span>
+              </Link>
             </Menu.Item>
             <Menu.Item key='3'>
               <Link to='/profile'>
@@ -65,6 +68,19 @@ class BaseLayout extends React.Component {
           </Menu>
         </Sider>
         <Layout>
+          <Header
+            style={{
+              position: 'fixed',
+              bottom: 0,
+              zIndex: 1,
+              width: '100%',
+              paddingLeft: '0px',
+            }}
+          >
+            <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']}>
+              <Player />
+            </Menu>
+          </Header>
           <PageHeader
             onBack={() => history.goBack()}
             style={{ background: '#fff', padding: '12px 24px' }}
@@ -110,6 +126,7 @@ class BaseLayout extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.user.user,
+    token: state.auth.accessToken,
   };
 };
 export default connect(mapStateToProps, { fetchUserProfile, logout })(BaseLayout);

@@ -1,18 +1,22 @@
 import React from 'react';
 import { List, Icon } from 'antd';
 const SongList = props => {
-  const { tracks } = props;
+  const { tracks, artist, pageSize } = props;
+
   return (
     <List
-      pagination={{ pageSize: 5 }}
+      pagination={{ pageSize: pageSize ? pageSize : 5 }}
       header={<div>Tracks:</div>}
       bordered
       dataSource={tracks}
       renderItem={item => (
-        <List.Item>
+        <List.Item key={item.id}>
           <List.Item.Meta
             title={<div>{item.name}</div>}
             description={[
+              artist && (
+                <div key='artists'>{item.artists.map(artist => artist.name).join(', ')}</div>
+              ),
               <a
                 target='_blank'
                 rel='noopener noreferrer'

@@ -37,8 +37,6 @@ export const fetchRelatedArtist = id => async dispatch => {
 
   try {
     const response = await spotify.get(`/artists/${id}/related-artists`);
-    console.log(response.data);
-
     dispatch({
       type: artistConstants.FETCH_RELATED_ARTISTS_SUCCEEDED,
       payload: response.data.artists,

@@ -10,11 +10,11 @@ import RenderCtrl from 'components/RenderCtrl/RenderCtrl';
 const { Title, Text } = Typography;
 const AlbumDetailPage = props => {
   const { images, tracks } = props.album;
-  const { album } = props;
+  const { album, match, fetchAlbumDetail } = props;
 
   useEffect(() => {
-    props.fetchAlbumDetail(props.match.params.id);
-  }, [props.match.params.id]);
+    fetchAlbumDetail(match.params.id);
+  }, [match.params.id, fetchAlbumDetail]);
 
   return (
     <div>
@@ -22,9 +22,13 @@ const AlbumDetailPage = props => {
       <RenderCtrl error={props.error} loading={props.loading}>
         <Row>
           <Col md={{ span: 8, offset: 7 }} lg={{ span: 8, offset: 0 }} xl={8}>
-            <img src={images ? images[1].url : ''} alt='albun-image' />
+            <img src={images ? images[1].url : ''} alt='album-cover' />
             <div style={{ minWidth: '300px' }}>
-              <a href={album.external_urls ? album.external_urls.spotify : ''}>
+              <a
+                target='_blank'
+                rel='noopener noreferrer'
+                href={album.external_urls ? album.external_urls.spotify : ''}
+              >
                 <Title level={2} style={{ marginBottom: 0 }}>
                   {album.name}
                 </Title>
@@ -53,7 +57,11 @@ const AlbumDetailPage = props => {
               </Title>
               <Text code>Release date: {album.release_date}</Text>
               <div style={{ marginTop: '10px' }}>
-                <a href={album.external_urls ? album.external_urls.spotify : ''}>
+                <a
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  href={album.external_urls ? album.external_urls.spotify : ''}
+                >
                   <Icon type='arrow-up' rotate={45} />
                   See album on spotify
                 </a>

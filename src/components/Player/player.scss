@@ -1,0 +1,29 @@
+.player {
+  display: flex;
+  margin-left: 30px;
+  .progress {
+    width: 600px;
+    margin-top: 20px;
+    margin-left: 30px;
+  }
+  .player-btns {
+    font-size: 36px;
+    margin-top: 15px;
+    margin-left: 10px;
+  }
+
+  .player-btns:hover {
+    cursor: pointer;
+    color: #1db954;
+  }
+  .player-current-info {
+    margin-left: 20px;
+    .track {
+      font-size: 26px;
+    }
+    .track,
+    .artist-name {
+      height: 25px;
+    }
+  }
+}
