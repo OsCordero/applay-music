@@ -25,7 +25,6 @@ const PublicLayout = props => {
           <Menu.Item key='2'>
             <Link to='/about'>What is Applay?</Link>
           </Menu.Item>
-          <Menu.Item key='3'>Contact us</Menu.Item>
         </Menu>
       </Header>
       <Content
