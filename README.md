@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-##See live demo:
+## See live demo:
 https://applay-music.herokuapp.com
 
 ## Available Scripts
