@@ -23,4 +23,4 @@ that's it! after a couple of seconds you should be able to listen yur music insi
 
 Note: player function is in beta, if the player's buttons set does not appear please refresh your page
 
-Made with :heart: by 2019's Q4 React Trainee Program Team
+Made with :heart: by Applaudo Studios 2019's Q4 React Trainee Program Team
