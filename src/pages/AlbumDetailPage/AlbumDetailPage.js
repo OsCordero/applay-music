@@ -7,6 +7,7 @@ import { fetchAlbumDetail } from 'actions/albumActions';
 import SongList from 'components/SongList/SongList';
 
 import RenderCtrl from 'components/RenderCtrl/RenderCtrl';
+import './album-detail.scss';
 const { Title, Text } = Typography;
 const AlbumDetailPage = props => {
   const { images, tracks } = props.album;
@@ -21,9 +22,13 @@ const AlbumDetailPage = props => {
       <Title level={2}>Album detail page</Title>
       <RenderCtrl error={props.error} loading={props.loading}>
         <Row>
-          <Col md={{ span: 8, offset: 7 }} lg={{ span: 8, offset: 0 }} xl={8}>
-            <img src={images ? images[1].url : ''} alt='album-cover' />
-            <div style={{ minWidth: '300px' }}>
+          <Col xs={24} sm={24} md={{ span: 8, offset: 7 }} lg={{ span: 8, offset: 0 }} xl={8}>
+            <img
+              className='album-detail-image'
+              src={images ? images[1].url : ''}
+              alt='album-cover'
+            />
+            <div style={{ minWidth: '100%' }}>
               <a
                 target='_blank'
                 rel='noopener noreferrer'
