@@ -20,7 +20,7 @@ class BaseLayout extends React.Component {
     collapsed: false,
   };
 
-  onCollapse = collapsed => {
+  onCollapse = (collapsed) => {
     this.setState({ collapsed });
   };
 
@@ -96,7 +96,7 @@ class BaseLayout extends React.Component {
                     size='small'
                     icon='user'
                     className='avatar'
-                    src={images ? images[0].url : ''}
+                    src={images ? (images[0] ? images[0].url : '') : ''}
                   />
                   {display_name}
                 </Tag>
@@ -123,7 +123,7 @@ class BaseLayout extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user.user,
     token: state.auth.accessToken,

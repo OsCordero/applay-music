@@ -7,7 +7,7 @@ import './welcome.scss';
 import icon from './spotify.png';
 const { Title } = Typography;
 
-export const WelcomePage = props => {
+export const WelcomePage = (props) => {
   const scopes = 'user-library-read,streaming,app-remote-control,user-modify-playback-state';
   const { match, login, logout } = props;
   useEffect(() => {
@@ -23,7 +23,7 @@ export const WelcomePage = props => {
       <Title>Sign In with your spotify account</Title>
       <Title level={2}>you are one click away!</Title>
       <a
-        href={`https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=${scopes}&response_type=token&redirect_uri=https://applay-music.herokuapp.com/callback`}
+        href={`https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=${scopes}&response_type=token&redirect_uri=https://localhost:3000/callback`}
         style={{ color: 'white' }}
       >
         <Button className='spotify'>
