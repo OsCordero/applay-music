@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Avatar, Row, Col, Typography, Descriptions, Button, Icon } from 'antd';
 const { Title } = Typography;
-const ProfilePage = props => {
+const ProfilePage = (props) => {
   const { images, display_name, email, followers, country, external_urls } = props.user;
   return (
     <div>
@@ -12,7 +12,7 @@ const ProfilePage = props => {
           <Avatar
             style={{ textAlign: 'center', boxShadow: '0px 0px 5 px 0px rgba(0,0,0,0.5)' }}
             size={250}
-            src={images ? images[0].url : ''}
+            src={images ? (images[0] ? images[0].url : '') : ''}
             icon='user'
           />
 
@@ -42,7 +42,7 @@ const ProfilePage = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user.user,
   };
