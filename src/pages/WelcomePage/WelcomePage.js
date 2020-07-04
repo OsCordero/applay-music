@@ -23,7 +23,7 @@ export const WelcomePage = (props) => {
       <Title>Sign In with your spotify account</Title>
       <Title level={2}>you are one click away!</Title>
       <a
-        href={`https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=${scopes}&response_type=token&redirect_uri=https://localhost:3000/callback`}
+        href={`https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=${scopes}&response_type=token&redirect_uri=https://applay-music.herokuapp.com/callback`}
         style={{ color: 'white' }}
       >
         <Button className='spotify'>
